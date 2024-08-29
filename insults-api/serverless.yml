@@ -1,0 +1,31 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: studentkasia
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: insults-api
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: eu-north-1
+  deploymentMethod: direct
+
+functions:
+  GetInsults:                  
+    handler: functions/GetInsults/index.handler
+    events:
+      - httpApi:
+          path: /insults
+          method: get
+  PostInsult:                  
+    handler: functions/PostInsult/index.handler
+    events:
+      - httpApi:
+          path: /insults
+          method: post
+          PostInsult:  
+  GetInsult:                        
+    handler: functions/GetInsult/index.handler
+    events:
+      - httpApi:
+          path: /insults/{id}
+          method: get
